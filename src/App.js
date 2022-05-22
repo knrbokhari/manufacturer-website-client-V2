@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navber/Navbar";
+import Footer from "./components/Shared/Footer";
 import { publicRoute } from "./routes/publicRoutes";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           ))}
         </Routes>
       }
+      <Footer />
     </Navbar>
     // </div>
   );

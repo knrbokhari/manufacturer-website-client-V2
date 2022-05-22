@@ -1,6 +1,7 @@
 import React from "react";
 import Banner from "../components/Home/Banner";
 import BusinessSummary from "../components/Home/BusinessSummary";
+import Reviews from "../components/Home/Reviews";
 import useProducts from "../hooks/useProducts";
 
 const Home = () => {
@@ -30,6 +31,7 @@ const Home = () => {
         </div>
       </div>
       <BusinessSummary />
+      <Reviews />
     </div>
   );
 };
