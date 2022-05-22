@@ -5,6 +5,7 @@ import { publicRoute } from "./routes/publicRoutes";
 
 function App() {
   return (
+    // <div className="container mx-auto">
     <Navbar>
       {
         <Routes>
@@ -14,6 +15,7 @@ function App() {
         </Routes>
       }
     </Navbar>
+    // </div>
   );
 }
 
