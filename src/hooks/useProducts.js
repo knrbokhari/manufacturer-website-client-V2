@@ -4,7 +4,7 @@ const useProducts = () => {
   const [products, seProducts] = useState([]);
   useEffect(() => {
     const fetchProduct = async () => {
-      const rsc = await fetch("product.json");
+      const rsc = await fetch("https://warm-brook-08565.herokuapp.com/product");
       const data = await rsc.json();
       seProducts(data);
     };
