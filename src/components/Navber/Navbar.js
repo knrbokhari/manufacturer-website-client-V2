@@ -11,8 +11,8 @@ const Navbar = ({ children }) => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/purchase" className="rounded-lg">
-          Purchase
+        <NavLink to="/products" className="rounded-lg">
+          Products
         </NavLink>
       </li>
       <li>
