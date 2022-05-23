@@ -6,7 +6,7 @@ import Loading from "../components/Shared/Loading";
 const Purchase = () => {
   const { id } = useParams()
   const [order, setOrder] = useState(0)
-  const url = `http://localhost:5000/product/${id}`;
+  const url = `https://warm-brook-08565.herokuapp.com/product/${id}`;
   const { data, isLoading } = useQuery('product', () => fetch(url).then((res) => res.json()))
 
   // const { name, image, minOrder, price, description, quantity } = data;

@@ -1,8 +1,18 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, NavLink } from "react-router-dom";
+import auth from "../../firebase.init";
+import { signOut } from "firebase/auth";
 
 const Navbar = ({ children }) => {
-  const user = true;
+  const [user] = useAuthState(auth);
+  console.log(user)
+
+  const logout = () => {
+    signOut(auth);
+    localStorage.removeItem("accessToken");
+  };
+
   const nav = (
     <>
       <li>
@@ -51,7 +61,8 @@ const Navbar = ({ children }) => {
               class="btn btn-ghost btn-circle avatar rounded-full"
             >
               <div class="w-10 rounded-full">
-                <img src="https://api.lorem.space/image/face?hash=33791" />
+                <img src={user.photoURL ? user.photoURL : "https://i.ibb.co/TYCW2Fz/istockphoto-666545204-612x612-1.jpg"} alt="" />
+                {/* <img src="https://i.ibb.co/238L936/man.png" alt="" /> */}
               </div>
             </label>
             <ul
@@ -65,7 +76,7 @@ const Navbar = ({ children }) => {
                 <Link to="/dashboard">Dashboard</Link>
               </li>
               <li>
-                <Link to="/">Logout</Link>
+                <button onClick={logout}>Logout</button>
               </li>
             </ul>
           </div>
