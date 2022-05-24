@@ -13,7 +13,7 @@ const Purchase = () => {
   const url = `https://warm-brook-08565.herokuapp.com/product/${id}`;
   const { data, isLoading } = useQuery('product', () => fetch(url).then((res) => res.json()))
 
-  console.log(data)
+  // console.log(data)
   if (isLoading || loading) {
     return <Loading></Loading>
   }

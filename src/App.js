@@ -10,24 +10,27 @@ import Purchase from "./pages/Purchase/Purchase";
 import RequireAuth from './hooks/RequireAuth';
 import Dashboard from "./pages/Dashboard/Dashboard/Dashboard";
 import MyOrder from './pages/Dashboard/MyOrder/MyOrder';
-
+import Payment from './pages/Dashboard/Payment/Payment';
 
 
 function App() {
   return (
-    <Navbar>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/purchase/:id" element={<RequireAuth><Purchase /></RequireAuth>} />
-        <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} >
-          <Route index element={<MyOrder />}></Route>
-        </Route>
-      </Routes>
-      <Footer />
-    </Navbar>
+    <div className="">
+      <Navbar>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/purchase/:id" element={<RequireAuth><Purchase /></RequireAuth>} />
+          <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} >
+            <Route index element={<MyOrder />}></Route>
+            <Route path="payment/:id" element={<Payment />}></Route>
+          </Route>
+        </Routes>
+        <Footer />
+      </Navbar>
+    </div>
   );
 }
 
