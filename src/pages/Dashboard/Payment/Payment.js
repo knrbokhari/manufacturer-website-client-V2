@@ -6,9 +6,7 @@ import { useParams } from 'react-router-dom';
 import Loading from '../../Shared/Loading/Loading';
 import CheckoutForm from '../CheckoutForm/CheckoutForm';
 
-const stripePromise = loadStripe(
-    "pk_test_pk_test_51L17qxHBn8eTkaGlOjG2JgVVcr6jvC5t7ubxyFEBpQr3tv8Xb3TvEKUDRPVOMmgZpFmi4BJg9whkV1PjdhB88hgZ00tq97usGQ"
-);
+const stripePromise = loadStripe("pk_test_51L17qxHBn8eTkaGlOjG2JgVVcr6jvC5t7ubxyFEBpQr3tv8Xb3TvEKUDRPVOMmgZpFmi4BJg9whkV1PjdhB88hgZ00tq97usGQ");
 
 const Payment = () => {
     const { id } = useParams();
@@ -52,4 +50,3 @@ const Payment = () => {
 };
 
 export default Payment;
-// https://warm-brook-08565.herokuapp.com/

@@ -11,7 +11,11 @@ const Purchase = () => {
   const [order, setOrder] = useState(0)
   const navigate = useNavigate()
   const url = `https://warm-brook-08565.herokuapp.com/product/${id}`;
-  const { data, isLoading } = useQuery('product', () => fetch(url).then((res) => res.json()))
+  const { data, isLoading } = useQuery('product', () => fetch(url, {
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    }
+  }).then((res) => res.json()))
 
   // console.log(data)
   if (isLoading || loading) {
@@ -71,7 +75,7 @@ const Purchase = () => {
             <p className="text-lg">Product Id: {data?._id}</p>
             <p className="text-lg">Name: {data?.name}</p>
             <p className="text-lg">Description: {data?.description} </p>
-            <p className="text-lg">Tags: {data?.tag.map(value => ` ${value}`) + ``} </p>
+            <p className="text-lg">Tags: {data?.tag} </p>
             <p className="text-lg">Available Quantity: {data?.quantity}</p>
             <p className="text-lg">Minimum Order Quantity: {data?.minOrder}</p>
             <p className="text-lg">Price: ${data?.price}</p>

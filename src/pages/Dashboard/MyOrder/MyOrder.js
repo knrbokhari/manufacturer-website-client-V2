@@ -55,8 +55,8 @@ const MyOrder = () => {
                                     <td>{order.productName}</td>
                                     <td>{order.order}</td>
                                     <td>{order.totalPrices}</td>
-                                    <td>{order.pay ? 'paid' : <Link className='btn btn-primary' to={`/dashboard/payment/${order._id}`}>Pay</Link>}</td>
-                                    <td>{order.pay ? '' : "Cancel"}</td>
+                                    <td>{order.paid ? 'paid' : <Link className='btn btn-primary' to={`/dashboard/payment/${order._id}`}>Pay</Link>}</td>
+                                    <td>{order.paid ? '' : "Cancel"}</td>
                                 </tr>
                             ))
                         }
