@@ -11,9 +11,19 @@ import RequireAuth from './hooks/RequireAuth';
 import Dashboard from "./pages/Dashboard/Dashboard/Dashboard";
 import MyOrder from './pages/Dashboard/MyOrder/MyOrder';
 import Payment from './pages/Dashboard/Payment/Payment';
+import useAdmin from "./hooks/useAdmin";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "./firebase.init";
+import AllOrder from "./pages/Dashboard/AllOrder/AllOrder";
+import AllUsers from "./pages/Dashboard/AllUsers/AllUsers";
+import MyReview from "./pages/Dashboard/MyReview/MyReview";
+import Profile from './pages/Dashboard/Profile/Profile';
+
 
 
 function App() {
+  const [user] = useAuthState(auth)
+  const [admin, adminLoading] = useAdmin(user)
   return (
     <div className="">
       <Navbar>
@@ -24,11 +34,15 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/purchase/:id" element={<RequireAuth><Purchase /></RequireAuth>} />
           <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} >
-            <Route index element={<MyOrder />}></Route>
+            {admin && <Route index element={<AllOrder />}></Route>}
+            {admin && <Route path="alluser" element={<AllUsers />}></Route>}
+            {!admin && <Route index element={<MyOrder />}></Route>}
+            {!admin && <Route path="myreview" element={<MyReview />}></Route>}
+            <Route path="profile" element={<Profile />}></Route>
             <Route path="payment/:id" element={<Payment />}></Route>
           </Route>
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </Navbar>
     </div>
   );

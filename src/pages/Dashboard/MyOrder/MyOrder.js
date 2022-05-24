@@ -30,7 +30,7 @@ const MyOrder = () => {
         }
     }, [user]);
 
-    console.log(orders)
+    // console.log(orders)
     return (
         <div className='container mx-auto pb-14'>
             <h2 className='text-center text-3xl my-9'>MyOrder</h2>
@@ -45,6 +45,7 @@ const MyOrder = () => {
                             <th>total Prices</th>
                             <th>Payment</th>
                             <th>Cancel</th>
+                            <td>transactionId</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,9 +55,10 @@ const MyOrder = () => {
                                     <th>{index + 1}</th>
                                     <td>{order.productName}</td>
                                     <td>{order.order}</td>
-                                    <td>{order.totalPrices}</td>
+                                    <td>${order.totalPrices}</td>
                                     <td>{order.paid ? 'paid' : <Link className='btn btn-primary' to={`/dashboard/payment/${order._id}`}>Pay</Link>}</td>
                                     <td>{order.paid ? '' : "Cancel"}</td>
+                                    <td>{order.transactionId}</td>
                                 </tr>
                             ))
                         }
