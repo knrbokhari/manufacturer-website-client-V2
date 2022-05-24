@@ -1,30 +1,33 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import PrivateRoute from "./Authentication/PrivateRoute";
-import Navbar from "./components/Navber/Navbar";
-import Footer from "./components/Shared/Footer";
-import { privateRoutes } from "./routes/privateRoutes";
-import { publicRoute } from "./routes/publicRoutes";
+import Navbar from "./pages/Shared/Navber/Navbar";
+import Footer from "./pages/Shared/Footer/Footer";
+import Home from "./pages/Home/Home/Home";
+import Products from './pages/Products/Products/Products';
+import Login from "./pages/Login/Login/Login";
+import Register from "./pages/Login/Register/Register";
+import Purchase from "./pages/Purchase/Purchase";
+import RequireAuth from './hooks/RequireAuth';
+import Dashboard from "./pages/Dashboard/Dashboard/Dashboard";
+import MyOrder from './pages/Dashboard/MyOrder/MyOrder';
+
+
 
 function App() {
   return (
-    // <div className="container mx-auto">
     <Navbar>
-      {
-        <Routes>
-          {publicRoute.map(({ path, Component }, index) => (
-            <Route key={index} path={path} element={<Component />} />
-          ))}
-          <Route element={<PrivateRoute />}>
-            {privateRoutes.map(({ path, Component }, index) => (
-              <Route key={index} path={path} element={<Component />} />
-            ))}
-          </Route>
-        </Routes>
-      }
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/purchase/:id" element={<RequireAuth><Purchase /></RequireAuth>} />
+        <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} >
+          <Route index element={<MyOrder />}></Route>
+        </Route>
+      </Routes>
       <Footer />
     </Navbar>
-    // </div>
   );
 }
 

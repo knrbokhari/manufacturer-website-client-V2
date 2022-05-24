@@ -2,8 +2,9 @@ import React from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import Loading from '../components/Shared/Loading';
-import auth from '../firebase.init';
+import Loading from '../../Shared/Loading/Loading';
+import auth from '../../../firebase.init';
+import useToken from '../../../hooks/useToken';
 
 const Register = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -18,6 +19,7 @@ const Register = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
+    const [token] = useToken(user || gUser);
 
     let registerError;
 
@@ -31,7 +33,7 @@ const Register = () => {
         );
     }
 
-    if (user || gUser) {
+    if (token) {
         navigate(from, { replace: true });
     }
 
@@ -42,14 +44,14 @@ const Register = () => {
     };
 
     return (
-        <div class="hero container mx-auto min-h-screen mb-14">
-            <div class="hero-content flex-col md:flex-row-reverse">
-                <div class="text-center md:text-left">
-                    <h1 class="text-5xl font-bold">Register now!</h1>
-                    <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+        <div className="hero container mx-auto min-h-screen mb-14">
+            <div className="hero-content flex-col md:flex-row-reverse">
+                <div className="text-center md:text-left">
+                    <h1 className="text-5xl font-bold">Register now!</h1>
+                    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                 </div>
-                <div class="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100">
-                    <div class="card-body">
+                <div className="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100">
+                    <div className="card-body">
                         <h2 className="text-center text-4xl font-bold">Register</h2>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-control w-full">

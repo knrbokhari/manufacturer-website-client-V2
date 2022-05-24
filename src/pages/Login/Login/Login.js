@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
     useSignInWithEmailAndPassword,
     useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
-import auth from "../firebase.init";
+import auth from "../../../firebase.init";
 import { useForm } from "react-hook-form";
-import Loading from "../components/Shared/Loading";
+import Loading from "../../Shared/Loading/Loading";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import useToken from "../../../hooks/useToken";
+
+
+
 const Login = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const {
@@ -19,8 +23,15 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
+    const [token] = useToken(user || gUser);
 
     let signInError;
+
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [token, from, navigate]);
 
     if (loading || gLoading) {
         return <Loading></Loading>;
@@ -32,24 +43,19 @@ const Login = () => {
         );
     }
 
-    if (user || gUser) {
-        navigate(from, { replace: true });
-    }
-
-
     const onSubmit = (data) => {
         signInWithEmailAndPassword(data.email, data.password);
     };
 
     return (
-        <div class="hero container mx-auto min-h-screen mb-14">
-            <div class="hero-content flex-col md:flex-row-reverse">
-                <div class="text-center md:text-left">
-                    <h1 class="text-5xl font-bold">Login now!</h1>
-                    <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+        <div className="hero container mx-auto min-h-screen mb-14">
+            <div className="hero-content flex-col md:flex-row-reverse">
+                <div className="text-center md:text-left">
+                    <h1 className="text-5xl font-bold">Login now!</h1>
+                    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                 </div>
-                <div class="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100">
-                    <div class="card-body">
+                <div className="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100">
+                    <div className="card-body">
                         <h2 className="text-center text-4xl font-bold">Login</h2>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-control w-full">

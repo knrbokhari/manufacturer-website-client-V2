@@ -1,6 +1,6 @@
 import React from "react";
-import Product from "../components/Products/Product";
-import useProducts from "../hooks/useProducts";
+import Product from "../Product/Product";
+import useProducts from "../../../hooks/useProducts";
 
 const Products = () => {
   const [products] = useProducts();

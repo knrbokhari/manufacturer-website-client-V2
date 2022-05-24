@@ -1,9 +1,9 @@
 import React from "react";
-import Banner from "../components/Home/Banner";
-import BusinessSummary from "../components/Home/BusinessSummary";
-import Reviews from "../components/Home/Reviews";
-import useProducts from "../hooks/useProducts";
-import Product from '../components/Products/Product';
+import Banner from "../Banner/Banner";
+import BusinessSummary from "../BusinessSummary/BusinessSummary";
+import Reviews from "../Reviews/Reviews";
+import useProducts from "../../../hooks/useProducts";
+import Product from '../../Products/Product/Product';
 
 const Home = () => {
   const [products] = useProducts();
