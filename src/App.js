@@ -20,6 +20,7 @@ import MyReview from "./pages/Dashboard/MyReview/MyReview";
 import Profile from './pages/Dashboard/Profile/Profile';
 import UpdateProfile from "./pages/Dashboard/UpdateProfile/UpdateProfile";
 import RequireAdmin from "./hooks/RequireAdmin";
+import ManageProducts from "./pages/Dashboard/ManageProducts/ManageProducts";
 
 
 
@@ -43,6 +44,7 @@ function App() {
             <Route path="profile" element={<Profile />}></Route>
             <Route path="payment/:id" element={<Payment />}></Route>
             <Route path="updateprofile" element={<UpdateProfile />}></Route>
+            <Route path="manageproduct" element={<ManageProducts />}></Route>
           </Route>
         </Routes>
         {/* <Footer /> */}
