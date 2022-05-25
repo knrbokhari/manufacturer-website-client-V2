@@ -10,7 +10,7 @@ const stripePromise = loadStripe("pk_test_51L17qxHBn8eTkaGlOjG2JgVVcr6jvC5t7ubxy
 
 const Payment = () => {
     const { id } = useParams();
-    const url = `https://warm-brook-08565.herokuapp.com/booking/${id}`
+    const url = `http://localhost:5000/booking/${id}`
     const { data, isLoading } = useQuery("booking", () =>
         fetch(url, {
             headers: {

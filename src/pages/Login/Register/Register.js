@@ -33,14 +33,19 @@ const Register = () => {
         );
     }
 
-    if (token) {
-        navigate(from, { replace: true });
+    const users = () => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
     }
+
 
 
     const onSubmit = async (data) => {
         await createUserWithEmailAndPassword(data.email, data.password);
+        console.log(data.name)
         await updateProfile({ displayName: data.name });
+        users()
     };
 
     return (

@@ -14,7 +14,7 @@ const CheckoutForm = ({ data: order, stripePromise }) => {
     //   console.log(order);
 
     useEffect(() => {
-        fetch("https://warm-brook-08565.herokuapp.com/create-payment-intent", {
+        fetch("http://localhost:5000/create-payment-intent", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -80,7 +80,7 @@ const CheckoutForm = ({ data: order, stripePromise }) => {
                 order: _id,
                 transactionId: paymentIntent.id,
             };
-            fetch(`https://warm-brook-08565.herokuapp.com/booking/${_id}`, {
+            fetch(`http://localhost:5000/booking/${_id}`, {
                 method: "PATCH",
                 headers: {
                     "content-type": "application/json",

@@ -27,7 +27,7 @@ const MyReview = () => {
             image: user.photoURL
         }
         // console.log(myReview)
-        fetch("https://warm-brook-08565.herokuapp.com/review", {
+        fetch("http://localhost:5000/review", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

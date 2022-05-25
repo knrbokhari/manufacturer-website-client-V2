@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import { signOut } from "firebase/auth";
+import OrderRow from '../OrderRow/OrderRow';
+import DeleteConfirmModal from '../DeleteConfirmModal/DeleteConfirmModal';
 
 
 const MyOrder = () => {
     const [orders, setOrders] = useState([])
+    const [cancelOrder, setCancelOrder] = useState(null)
     const [user] = useAuthState(auth)
     const navigate = useNavigate()
 
+
+
     useEffect(() => {
         if (user) {
-            fetch(`https://warm-brook-08565.herokuapp.com/booking?user=${user.email}`, {
+            fetch(`http://localhost:5000/booking?user=${user.email}`, {
                 method: "GET",
                 headers: {
                     authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -28,12 +33,12 @@ const MyOrder = () => {
                 })
                 .then((data) => setOrders(data));
         }
-    }, [user]);
+    }, [cancelOrder]);
 
     // console.log(orders)
     return (
         <div className='container mx-auto pb-14'>
-            <h2 className='text-center text-3xl my-9'>MyOrder</h2>
+            <h2 className='text-center text-3xl my-9'>My Order</h2>
 
             <div class="overflow-x-auto">
                 <table class="table w-full">
@@ -50,23 +55,23 @@ const MyOrder = () => {
                     </thead>
                     <tbody>
                         {
-                            orders.map((order, index) => (
-                                <tr key={order._id}>
-                                    <th>{index + 1}</th>
-                                    <td>{order.productName}</td>
-                                    <td>{order.order}</td>
-                                    <td>${order.totalPrices}</td>
-                                    <td>{order.paid ? 'paid' : <Link className='btn btn-primary' to={`/dashboard/payment/${order._id}`}>Pay</Link>}</td>
-                                    <td>{order.paid ? '' : "Cancel"}</td>
-                                    <td>{order.transactionId}</td>
-                                </tr>
-                            ))
+                            orders.map((order, index) => <OrderRow key={order._id}
+                                order={order}
+                                index={index}
+                                setCancelOrder={setCancelOrder}
+                            ></OrderRow>)
                         }
                     </tbody>
                 </table>
+                {
+                    cancelOrder && <DeleteConfirmModal
+                        cancelOrder={cancelOrder}
+                        setCancelOrder={setCancelOrder}
+                    ></DeleteConfirmModal>
+                }
             </div>
 
-        </div>
+        </div >
     );
 };
 

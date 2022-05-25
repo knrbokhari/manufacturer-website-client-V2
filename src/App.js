@@ -18,6 +18,8 @@ import AllOrder from "./pages/Dashboard/AllOrder/AllOrder";
 import AllUsers from "./pages/Dashboard/AllUsers/AllUsers";
 import MyReview from "./pages/Dashboard/MyReview/MyReview";
 import Profile from './pages/Dashboard/Profile/Profile';
+import UpdateProfile from "./pages/Dashboard/UpdateProfile/UpdateProfile";
+import RequireAdmin from "./hooks/RequireAdmin";
 
 
 
@@ -34,12 +36,13 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/purchase/:id" element={<RequireAuth><Purchase /></RequireAuth>} />
           <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} >
-            {admin && <Route index element={<AllOrder />}></Route>}
+            {admin && <Route index element={<RequireAdmin><AllOrder /></RequireAdmin>}></Route>}
             {admin && <Route path="alluser" element={<AllUsers />}></Route>}
             {!admin && <Route index element={<MyOrder />}></Route>}
             {!admin && <Route path="myreview" element={<MyReview />}></Route>}
             <Route path="profile" element={<Profile />}></Route>
             <Route path="payment/:id" element={<Payment />}></Route>
+            <Route path="updateprofile" element={<UpdateProfile />}></Route>
           </Route>
         </Routes>
         {/* <Footer /> */}

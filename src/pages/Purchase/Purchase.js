@@ -10,7 +10,7 @@ const Purchase = () => {
   const { id } = useParams()
   const [order, setOrder] = useState(0)
   const navigate = useNavigate()
-  const url = `https://warm-brook-08565.herokuapp.com/product/${id}`;
+  const url = `http://localhost:5000/product/${id}`;
   const { data, isLoading } = useQuery('product', () => fetch(url, {
     headers: {
       authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -44,7 +44,7 @@ const Purchase = () => {
       email: user.email
     }
 
-    fetch("https://warm-brook-08565.herokuapp.com/booking", {
+    fetch("http://localhost:5000/booking", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
