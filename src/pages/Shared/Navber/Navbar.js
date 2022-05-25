@@ -30,8 +30,13 @@ const Navbar = ({ children }) => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard" className="rounded-lg">Dashboard</NavLink>
+        <NavLink to="/myportfolio" className="rounded-lg">
+          My Portfolio
+        </NavLink>
       </li>
+      {user && <li>
+        <NavLink to="/dashboard" className="rounded-lg">Dashboard</NavLink>
+      </li>}
       {/* profile */}
       {user ? (
         <li className="rounded-full">
@@ -50,7 +55,7 @@ const Navbar = ({ children }) => {
               className="menu menu-compact navbar dropdown-content top-16  shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link to="/profile">Profile</Link>
+                <Link to="/dashboard/profile">Profile</Link>
               </li>
               <li>
                 <button onClick={logout}>Logout</button>
