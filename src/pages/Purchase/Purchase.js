@@ -10,14 +10,13 @@ const Purchase = () => {
   const { id } = useParams()
   const [order, setOrder] = useState(0)
   const navigate = useNavigate()
-  const url = `http://localhost:5000/product/${id}`;
+  const url = `https://warm-brook-08565.herokuapp.com/product/${id}`;
   const { data, isLoading } = useQuery('product', () => fetch(url, {
     headers: {
       authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     }
   }).then((res) => res.json()))
 
-  // console.log(data)
   if (isLoading || loading) {
     return <Loading></Loading>
   }
@@ -44,7 +43,7 @@ const Purchase = () => {
       email: user.email
     }
 
-    fetch("http://localhost:5000/booking", {
+    fetch("https://warm-brook-08565.herokuapp.com/booking", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

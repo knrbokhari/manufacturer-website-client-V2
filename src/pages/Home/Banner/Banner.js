@@ -13,9 +13,7 @@ const Banner = () => {
         <div className="max-w-lg">
           <h1 className="text-7xl font-bold">NEED NEW</h1>
           <h1 className="mb-5 text-7xl font-bold">TOOLS?</h1>
-          <p className="mb-5">
-            if you went build your business and Looking for the best lead generation tools on the market? we are here to supply your quality full tools.
-          </p>
+          <p className="mb-5 text-xl">if you went build your business and Looking for the best lead generation tools on the market? we are here to supply your quality full tools.</p>
           <button className="btn btn-primary">Get Started</button>
         </div>
       </div>

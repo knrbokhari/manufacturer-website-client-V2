@@ -26,7 +26,7 @@ const MyReview = () => {
             time: dateTime,
             image: user.photoURL
         }
-        fetch("http://localhost:5000/review", {
+        fetch("https://warm-brook-08565.herokuapp.com/review", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

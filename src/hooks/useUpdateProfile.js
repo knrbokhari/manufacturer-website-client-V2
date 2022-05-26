@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react';
 
 const useUpdateProfile = (user) => {
-    const [updateProfile, setUpdateProfile] = useState([]);
+    const [updateProfileHooks, setUpdateProfileHooks] = useState([]);
     useEffect(() => {
         const fetchProduct = async () => {
-            const rsc = await fetch(`http://localhost:5000/user/${user.email}`, {
+            const rsc = await fetch(`https://warm-brook-08565.herokuapp.com/user/${user.email}`, {
                 headers: {
                     authorization: `Berer ${localStorage.getItem(`accessToken`)}`,
                 },
             });
             const data = await rsc.json();
-            setUpdateProfile(data);
+            setUpdateProfileHooks(data);
         };
 
         fetchProduct();
     }, [user]);
-    return [updateProfile];
+    return [updateProfileHooks];
 };
 
 export default useUpdateProfile;

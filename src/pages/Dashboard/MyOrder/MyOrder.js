@@ -17,7 +17,7 @@ const MyOrder = () => {
 
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/userbooking/${user.email}`, {
+            fetch(`https://warm-brook-08565.herokuapp.com/userbooking/${user.email}`, {
                 method: "GET",
                 headers: {
                     authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -35,7 +35,6 @@ const MyOrder = () => {
         }
     }, [cancelOrder]);
 
-    console.log(orders.length)
     return (
         <div className='container mx-auto pb-14'>
             <h2 className='text-center text-3xl my-9'>My Order</h2>

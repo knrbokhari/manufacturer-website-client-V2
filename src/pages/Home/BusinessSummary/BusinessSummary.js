@@ -48,7 +48,7 @@ const BusinessSummary = () => {
                 </div>
             </div>
             <div className="card w-full shadow-xl mt-14 border">
-                <div className="card-body grid p-14 lg:grid-cols-2">
+                <div className="card-body grid p-14 items-center lg:grid-cols-2">
                     <div className="">
                         <h2 className="card-title text-3xl">Have any question about us or get a products request?</h2>
                         <p className='text-xl mt-3'>Don`t hesitakte to contact us</p>

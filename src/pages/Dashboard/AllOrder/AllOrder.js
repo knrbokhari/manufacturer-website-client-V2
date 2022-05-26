@@ -10,20 +10,19 @@ const AllOrder = () => {
         isLoading,
         refetch,
     } = useQuery("orders", () =>
-        fetch("http://localhost:5000/booking", {
+        fetch("https://warm-brook-08565.herokuapp.com/booking", {
             headers: {
                 authorization: `Bearer ${localStorage.getItem("accessToken")}`,
             },
         }).then((res) => res.json())
     );
 
-    // console.log(orders)
     if (isLoading) {
         return <Loading></Loading>;
     }
 
     const hendaleShipped = (id) => {
-        fetch(`http://localhost:5000/shipping/${id}`, {
+        fetch(`https://warm-brook-08565.herokuapp.com/shipping/${id}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json",
@@ -32,7 +31,6 @@ const AllOrder = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                // console.log(data);
                 refetch()
             });
     }

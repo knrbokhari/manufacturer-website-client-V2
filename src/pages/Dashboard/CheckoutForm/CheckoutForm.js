@@ -13,10 +13,9 @@ const CheckoutForm = ({ data: order, stripePromise }) => {
     const navigate = useNavigate()
 
     const { _id, totalPrices, name, email } = order;
-    //   console.log(order);
 
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://warm-brook-08565.herokuapp.com/create-payment-intent", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -26,8 +25,6 @@ const CheckoutForm = ({ data: order, stripePromise }) => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data?.clientSecret)
-
                 if (data?.clientSecret) {
                     setClientSecret(data.clientSecret);
                 }
@@ -74,7 +71,6 @@ const CheckoutForm = ({ data: order, stripePromise }) => {
         } else {
             setCardError("");
             setTransactionId(paymentIntent.id);
-            // console.log(paymentIntent);
             setSuccess("Congrats! Your payment is completed.");
 
             //store payment on database
@@ -82,7 +78,7 @@ const CheckoutForm = ({ data: order, stripePromise }) => {
                 order: _id,
                 transactionId: paymentIntent.id,
             };
-            fetch(`http://localhost:5000/booking/${_id}`, {
+            fetch(`https://warm-brook-08565.herokuapp.com/booking/${_id}`, {
                 method: "PATCH",
                 headers: {
                     "content-type": "application/json",
@@ -93,7 +89,6 @@ const CheckoutForm = ({ data: order, stripePromise }) => {
                 .then((res) => res.json())
                 .then((data) => {
                     setProcessing(false);
-                    console.log(data);
                     navigate('/dashboard')
                 });
         }

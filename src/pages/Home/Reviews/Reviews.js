@@ -4,12 +4,12 @@ import useReview from '../../../hooks/useReview';
 const Reviews = () => {
     const [reviews] = useReview()
     return (
-        <div className='container mx-auto'>
+        <div className='container mx-auto mb-12'>
             <h2 className='text-center text-5xl'>Reviews</h2>
             <div className="carousel carousel-center w-full p-4 space-x-4 rounded-box">
                 {
-                    reviews.reverse().map(review => (
-                        <div key={review._id} className="carousel-item border w-11/12  rounded-lg">
+                    reviews.slice().reverse().map(review => (
+                        <div key={review._id} className="carousel-item border w-10/12  rounded-lg">
                             <div className="card p-7 w-full bg-base-100 shadow-xl">
                                 <div className="flex relative">
                                     <div className="avatar">

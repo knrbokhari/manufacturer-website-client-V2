@@ -1,8 +1,7 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import auth from '../../../firebase.init';
-import CustomLink from '../../../hooks/CustomLink';
 import useAdmin from '../../../hooks/useAdmin';
 
 const Dashboard = () => {
@@ -25,30 +24,30 @@ const Dashboard = () => {
 
                     {
                         admin ? <li>
-                            <CustomLink to="/dashboard">Manage All Order</CustomLink>
+                            <Link to="/dashboard" className='w-full'>Manage All Order</Link>
                         </li> : <li>
-                            <CustomLink to="/dashboard">My Order</CustomLink>
+                            <Link to="/dashboard" className='w-full'>My Order</Link>
                         </li>
                     }
                     <li>
-                        <CustomLink to="/dashboard/profile">Profile</CustomLink>
+                        <NavLink to="/dashboard/profile" className='w-full'>Profile</NavLink>
                     </li>
                     {!admin && <li>
-                        <CustomLink to="/dashboard/myreview">My Reviews</CustomLink>
+                        <NavLink to="/dashboard/myreview" className='w-full'>My Reviews</NavLink>
                     </li>}
                     {admin && (
                         <li>
-                            <CustomLink to="/dashboard/alluser">Make Admin</CustomLink>
+                            <NavLink to="/dashboard/alluser" className='w-full'>Make Admin</NavLink>
                         </li>
                     )}
                     {admin && (
                         <li>
-                            <CustomLink to="/dashboard/addaproduct">Add A Product</CustomLink>
+                            <NavLink to="/dashboard/addaproduct" className='w-full'>Add A Product</NavLink>
                         </li>
                     )}
                     {admin && (
                         <li>
-                            <CustomLink to="/dashboard/manageproduct">Manage Products</CustomLink>
+                            <NavLink to="/dashboard/manageproduct" className='w-full'>Manage Products</NavLink>
                         </li>
                     )}
                 </ul>

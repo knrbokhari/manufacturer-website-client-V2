@@ -3,11 +3,12 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
-import useUpdateProfile from '../../../hooks/useUpdateProfile';
-
+import useUpdateProfileHooks from '../../../hooks/useUpdateProfile';
+import { useUpdateProfile } from 'react-firebase-hooks/auth';
 
 const UpdateProfile = () => {
     const [user] = useAuthState(auth)
+    const [updateProfile] = useUpdateProfile(auth);
     const {
         register,
         formState: { errors },
@@ -15,10 +16,10 @@ const UpdateProfile = () => {
         reset,
     } = useForm();
     const navigate = useNavigate()
-    const [updateProfile] = useUpdateProfile(user)
+    const [updateProfileHooks] = useUpdateProfileHooks(user)
     const imageStorageKey = "78f4ba72d703ea5f83062479e9d4d80f";
 
-    const { phone, location, gender, education, LinkedIn } = updateProfile
+    const { phone, location, gender, education, LinkedIn } = updateProfileHooks
 
     const onSubmit = async (data) => {
         const formData = new FormData();
@@ -26,14 +27,13 @@ const UpdateProfile = () => {
         formData.append("image", image);
         const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
 
-        console.log(url)
+        await updateProfile({ displayName: data.name, photoURL: url });
         fetch(url, {
             method: "POST",
             body: formData,
         })
             .then((res) => res.json())
             .then((result) => {
-                console.log(result)
                 if (result.success) {
                     const photo = result.data.url;
                     const profile = {
@@ -45,12 +45,9 @@ const UpdateProfile = () => {
                         location: data.location || location,
                         phone: data.phone || phone,
                         LinkedIn: data.LinkedIn || LinkedIn,
-
-
                     };
-                    console.log(profile);
                     // send to your database
-                    fetch(`http://localhost:5000/userprofile/${user.email}`, {
+                    fetch(`https://warm-brook-08565.herokuapp.com/userprofile/${user.email}`, {
                         method: "PUT",
                         headers: {
                             "content-type": "application/json",
@@ -73,7 +70,7 @@ const UpdateProfile = () => {
     }
 
     return (
-        <div className='container mx-auto'>
+        <div className='container mx-auto mb-12'>
             <h2 className='my-10 text-center text-3xl'>Update Profile</h2>
 
             <div className="card max-w-2xl mx-auto shadow-xl">

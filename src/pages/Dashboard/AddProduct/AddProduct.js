@@ -19,7 +19,6 @@ const AddProduct = () => {
         formData.append("image", image);
         const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
 
-        console.log(url)
         fetch(url, {
             method: "POST",
             body: formData,
@@ -36,7 +35,7 @@ const AddProduct = () => {
                         quantity: data.availableQuantity,
                         description: data.description
                     }
-                    fetch(`http://localhost:5000/product/`, {
+                    fetch(`https://warm-brook-08565.herokuapp.com/product/`, {
                         method: "post",
                         headers: {
                             "content-type": "application/json",

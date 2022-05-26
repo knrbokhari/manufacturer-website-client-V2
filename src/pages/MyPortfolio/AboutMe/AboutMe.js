@@ -5,7 +5,7 @@ const AboutMe = () => {
         <div>
             <div className="hero shadow-lg rounded-lg border">
                 <div className="hero-content flex-col justify-center md:flex-row">
-                    <img src="https://i.ibb.co/cLcDNYq/dribbble-1.gif" className="max-w-full md:w-1/2 rounded-lg" alt='' />
+                    <img src="https://i.ibb.co/N77nz53/100028-1.jpg" className="max-w-full md:w-1/2 rounded-lg" alt='' />
                     <div>
                         <h3 className='text-3xl mb-2'>I am <span className='text-violet-600'>Kazi Naeem Rayhan</span></h3>
                         <div className="text-xl">

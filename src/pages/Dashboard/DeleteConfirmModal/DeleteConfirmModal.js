@@ -2,7 +2,7 @@ import React from 'react';
 
 const DeleteConfirmModal = ({ cancelOrder, setCancelOrder }) => {
     const handleDelete = () => {
-        fetch(`http://localhost:5000/booking/${cancelOrder}`, {
+        fetch(`https://warm-brook-08565.herokuapp.com/booking/${cancelOrder}`, {
             method: "DELETE",
             headers: {
                 authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -10,7 +10,6 @@ const DeleteConfirmModal = ({ cancelOrder, setCancelOrder }) => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
                 if (data.deletedCount) {
                     alert(`your order is deleted.`);
                     setCancelOrder(null);
