@@ -27,6 +27,11 @@
 .App-link {
   color: #61dafb;
 }
+.bg-img{
+  background-image: url('https://i.ibb.co/gWkVnj7/photo-1556740758-90de374c12ad-ixlib-rb-1-2.jpg');
+  background-position: center;
+  background-size: cover;
+}
 
 @keyframes App-logo-spin {
   from {

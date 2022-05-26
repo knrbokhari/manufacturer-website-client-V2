@@ -1,11 +1,14 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, NavLink } from "react-router-dom";
 import auth from "../../../firebase.init";
 import { signOut } from "firebase/auth";
+import CustomLink from "../../../hooks/CustomLink";
+import { Link } from "react-router-dom";
 
-const Navbar = ({ children }) => {
+const Navbar = () => {
   const [user] = useAuthState(auth);
+  const [navbarOpen, setNavbarOpen] = React.useState(false);
+
 
   const logout = () => {
     signOut(auth);
@@ -15,126 +18,96 @@ const Navbar = ({ children }) => {
   const nav = (
     <>
       <li>
-        <NavLink to="/" className="rounded-lg">
+        <CustomLink to="/" className="px-3 py-2 flex items-center justify-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
           Home
-        </NavLink>
+        </CustomLink>
       </li>
       <li>
-        <NavLink to="/products" className="rounded-lg">
+        <CustomLink to="/products" className="px-3 py-2 flex items-center justify-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
           Products
-        </NavLink>
+        </CustomLink>
       </li>
       <li>
-        <NavLink to="/blogs" className="rounded-lg">
+        <CustomLink to="/blogs" className="px-3 py-2 flex items-center justify-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
           Blogs
-        </NavLink>
+        </CustomLink>
       </li>
       <li>
-        <NavLink to="/myportfolio" className="rounded-lg">
-          My Portfolio
-        </NavLink>
+        <CustomLink to="/myportfolio" className="px-3 py-2 flex items-center justify-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
+          Portfolio
+        </CustomLink>
       </li>
       {user && <li>
-        <NavLink to="/dashboard" className="rounded-lg">Dashboard</NavLink>
+        <CustomLink to="/dashboard" className="px-3 py-2 flex items-center justify-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Dashboard</CustomLink>
       </li>}
-      {/* profile */}
       {user ? (
-        <li className="rounded-full">
-          <div className="dropdown dropdown-end py-0">
-            <label
-              tabindex="0"
-              className="btn btn-ghost btn-circle avatar rounded-full"
-            >
-              <div className="w-10 rounded-full">
-                <img src={user.photoURL ? user.photoURL : "https://i.ibb.co/TYCW2Fz/istockphoto-666545204-612x612-1.jpg"} alt="" />
-                {/* <img src="https://i.ibb.co/238L936/man.png" alt="" /> */}
-              </div>
-            </label>
-            <ul
-              tabindex="0"
-              className="menu menu-compact navbar dropdown-content top-16  shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <Link to="/dashboard/profile">Profile</Link>
-              </li>
-              <li>
-                <button onClick={logout}>Logout</button>
-              </li>
-            </ul>
-          </div>
+        <li>
+          <button onClick={logout} className="px-3 py-2 m-0 mx-auto flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Logout</button>
         </li>
       ) : (
         <li>
-          <NavLink to="/login" className="rounded-lg">
+          <CustomLink to="/login" className="px-3 py-2 flex items-center justify-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
             Login
-          </NavLink>
+          </CustomLink>
         </li>
       )}
     </>
   );
-  return (
-    <div className="drawer bg-base-100 drawer-end">
-      <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col">
-        <div className="w-full fixed z-10 bg-transparent">
-          <div className="w-full navbar container mx-auto">
-            <div className="navbar-start w-10">
-              <label
-                tabIndex="1"
-                htmlFor="dashboard-sidebar"
-                className="btn btn-ghost lg:hidden"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />
-                </svg>
-              </label>
-            </div>
-            <div className="flex-1 px-2 mx-2">Navbar Title</div>
-            <div className="flex-none hidden md:block">
-              <ul className="menu menu-horizontal gap-3">{nav}</ul>
-            </div>
-            <div className="flex-none md:hidden">
-              <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="inline-block w-6 h-6 stroke-current"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  ></path>
-                </svg>
-              </label>
-            </div>
-          </div>
-        </div>
-        {/* Content */}
-        {children}
-      </div>
-      <div className="drawer-side">
-        <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
-        <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 gap-2 items-center">
-          {nav}
-        </ul>
-      </div>
 
-    </div>
+  return (
+    <nav className="flex w-full flex-wrap items-center justify-between px-2 py-3 bg-gray-500 z-10 fixed top-0">
+      <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+        <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+          {user ? (<label
+            tabIndex="1"
+            htmlFor="dashboard-sidebar"
+            className="btn text-white lg:hidden"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
+          </label>) : ''}
+          <Link
+            className="text-xl font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
+            to="/"
+          >
+            Manufactory
+          </Link>
+          <button
+            className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+            type="button"
+            onClick={() => setNavbarOpen(!navbarOpen)}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-9 h-9 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+        </div>
+        <div
+          className={
+            "lg:flex flex-grow items-center justify-center" +
+            (navbarOpen ? " flex" : " hidden")
+          }
+          id="example-navbar-danger"
+        >
+          <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+            {nav}
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 };
 
 export default Navbar;
+
+

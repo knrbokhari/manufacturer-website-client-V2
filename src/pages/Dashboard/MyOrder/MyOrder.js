@@ -17,7 +17,7 @@ const MyOrder = () => {
 
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/booking?user=${user.email}`, {
+            fetch(`http://localhost:5000/userbooking/${user.email}`, {
                 method: "GET",
                 headers: {
                     authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -35,41 +35,43 @@ const MyOrder = () => {
         }
     }, [cancelOrder]);
 
-    // console.log(orders)
+    console.log(orders.length)
     return (
         <div className='container mx-auto pb-14'>
             <h2 className='text-center text-3xl my-9'>My Order</h2>
 
-            <div class="overflow-x-auto">
-                <table class="table w-full">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Name</th>
-                            <th>order</th>
-                            <th>total Prices</th>
-                            <th>Payment</th>
-                            <th>Cancel</th>
-                            <td>transactionId</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            orders.map((order, index) => <OrderRow key={order._id}
-                                order={order}
-                                index={index}
-                                setCancelOrder={setCancelOrder}
-                            ></OrderRow>)
-                        }
-                    </tbody>
-                </table>
-                {
-                    cancelOrder && <DeleteConfirmModal
-                        cancelOrder={cancelOrder}
-                        setCancelOrder={setCancelOrder}
-                    ></DeleteConfirmModal>
-                }
-            </div>
+            {!orders.length <= 0 ? (
+                <div className="overflow-x-auto">
+                    <table className="table w-full">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>order</th>
+                                <th>total Prices</th>
+                                <th>Payment</th>
+                                <th>Cancel</th>
+                                <td>transactionId</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                orders.map((order, index) => <OrderRow key={order._id}
+                                    order={order}
+                                    index={index}
+                                    setCancelOrder={setCancelOrder}
+                                ></OrderRow>)
+                            }
+                        </tbody>
+                    </table>
+                    {
+                        cancelOrder && <DeleteConfirmModal
+                            cancelOrder={cancelOrder}
+                            setCancelOrder={setCancelOrder}
+                        ></DeleteConfirmModal>
+                    }
+                </div>
+            ) : <h3 className='text-2xl mt-20 text-center'>No order found</h3>}
 
         </div >
     );

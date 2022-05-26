@@ -16,37 +16,37 @@ const ManageProducts = () => {
             .then((data) => {
                 console.log(data);
                 if (data.deletedCount) {
-                    alert(`your order is deleted.`);
+                    alert(`your product is deleted.`);
                     setCancelOrder(null);
                 }
             });
     }
 
-    console.log(products)
     return (
-        <div>
-            <h2>Manage Products</h2>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+        <div className='container mx-auto mb-10'>
+            <h2 className='text-center text-2xl mb-10 mt-3'>Manage Products({products.length})</h2>
+            <div className="overflow-x-aut overflow-x-visible">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>
                             <th>Name</th>
                             <th>Quantity</th>
                             <th>price</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            products?.map((product, index) => (
+                            products.map((product, index) => (
                                 <tr>
                                     <th>{index + 1}</th>
                                     <td>{product?.name}</td>
                                     <td>{product?.quantity}</td>
                                     <td>${product?.price}</td>
-                                    <td><label for="my-modal-6" class="btn modal-button btn-sm" onClick={() => setCancelOrder(product._id)}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    <td><label for="my-modal-6" className="btn modal-button btn-sm" onClick={() => setCancelOrder(product._id)}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                         </svg>
                                     </label></td>
                                 </tr>
@@ -54,14 +54,14 @@ const ManageProducts = () => {
                         }
                     </tbody>
                 </table>
-                <input type="checkbox" id="my-modal-6" class="modal-toggle" />
-                <div class="modal modal-bottom sm:modal-middle">
-                    <div class="modal-box">
-                        <h3 class="font-bold text-lg">Confirmation</h3>
-                        <p class="py-4">Do you want to Delete this order?</p>
-                        <div class="modal-action">
-                            <label for="my-modal-6" onClick={() => handleDelete()} class="btn">Delete</label>
-                            <label for="my-modal-6" class="btn">Cancel</label>
+                <input type="checkbox" id="my-modal-6" className="modal-toggle" />
+                <div className="modal modal-bottom sm:modal-middle">
+                    <div className="modal-box">
+                        <h3 className="font-bold text-lg">Confirmation</h3>
+                        <p className="py-4">Do you want to Delete this order?</p>
+                        <div className="modal-action">
+                            <label for="my-modal-6" onClick={() => handleDelete()} className="btn">Delete</label>
+                            <label for="my-modal-6" className="btn">Cancel</label>
                         </div>
                     </div>
                 </div>

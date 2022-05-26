@@ -11,23 +11,23 @@ const Profile = () => {
     const { photo, phone, name, location, gender, email, education, LinkedIn } = updateProfile
 
     return (
-        <div className='container mx-auto'>
+        <div className='container mx-auto mb-14'>
             <h2 className='my-10 text-center text-3xl'>Profile</h2>
 
-            <div class="card max-w-3xl mx-auto shadow-xl">
-                <div class="card-body">
+            <div className="card border max-w-3xl mx-auto shadow-xl">
+                <div className="card-body text-lg">
                     <div className=" md:flex">
                         <div className="w-60 md:w-32">
-                            <img src={photo} alt="" />
+                            <img src={photo || 'https://i.ibb.co/TYCW2Fz/istockphoto-666545204-612x612-1.jpg'} alt="" />
                         </div>
                         <div className=" md:ml-10">
-                            <h2>Name: {name}</h2>
-                            <p>Email: {email}</p>
-                            <p>Location: {location ? location : ''}</p>
-                            <p>Education: {education ? education : ''}</p>
-                            <p>Gender: {gender ? gender : ''}</p>
-                            <p>Phone: {phone ? phone : ''}</p>
-                            <p>LinkedIn: {LinkedIn ? LinkedIn : ''}</p>
+                            <h2><b className='w-24 inline-block'>Name</b> : {name || user.displayName}</h2>
+                            <p><b className='w-24 inline-block'>Email</b> : {email}</p>
+                            <p><b className='w-24 inline-block'>Location</b> : {location ? location : ''}</p>
+                            <p><b className='w-24 inline-block'>Education</b> : {education ? education : ''}</p>
+                            <p><b className='w-24 inline-block'>Gender</b> : {gender ? gender : ''}</p>
+                            <p><b className='w-24 inline-block'>Phone</b> : {phone ? phone : ''}</p>
+                            <p><b className='w-24 inline-block'>LinkedIn</b> : {LinkedIn ? LinkedIn : ''}</p>
                         </div>
                     </div>
 

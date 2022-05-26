@@ -3,6 +3,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import useUpdateProfile from '../../../hooks/useUpdateProfile';
 
 
 const UpdateProfile = () => {
@@ -14,8 +15,10 @@ const UpdateProfile = () => {
         reset,
     } = useForm();
     const navigate = useNavigate()
+    const [updateProfile] = useUpdateProfile(user)
     const imageStorageKey = "78f4ba72d703ea5f83062479e9d4d80f";
 
+    const { phone, location, gender, education, LinkedIn } = updateProfile
 
     const onSubmit = async (data) => {
         const formData = new FormData();
@@ -34,14 +37,14 @@ const UpdateProfile = () => {
                 if (result.success) {
                     const photo = result.data.url;
                     const profile = {
-                        name: data.name,
+                        name: data.name || user?.displayName,
                         email: data.email,
-                        gender: data.gender,
+                        gender: data.gender || gender,
                         photo: photo,
-                        education: data.education,
-                        location: data.location,
-                        phone: data.phone,
-                        LinkedIn: data.LinkedIn,
+                        education: data.education || education,
+                        location: data.location || location,
+                        phone: data.phone || phone,
+                        LinkedIn: data.LinkedIn || LinkedIn,
 
 
                     };
@@ -73,8 +76,8 @@ const UpdateProfile = () => {
         <div className='container mx-auto'>
             <h2 className='my-10 text-center text-3xl'>Update Profile</h2>
 
-            <div class="card max-w-2xl mx-auto shadow-xl">
-                <div class="card-body">
+            <div className="card max-w-2xl mx-auto shadow-xl">
+                <div className="card-body">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                             <div className="form-control w-full">
@@ -83,6 +86,8 @@ const UpdateProfile = () => {
                                 </label>
                                 <input
                                     type="text"
+                                    defaultValue={user?.displayName}
+                                    disabled={user?.displayName}
                                     placeholder="Your Name"
                                     className="input input-bordered w-full"
                                     {...register("name")}
@@ -124,7 +129,7 @@ const UpdateProfile = () => {
                             </label>
                             <input
                                 type="file"
-                                className="input input-bordered w-full"
+                                className="block text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 w-full"
                                 {...register("image", {
                                     required: {
                                         value: true,
@@ -186,7 +191,7 @@ const UpdateProfile = () => {
                                 <span className="label-text">Phone Number</span>
                             </label>
                             <input
-                                type="text"
+                                type="number"
                                 placeholder="Phone Number"
                                 // disabled
                                 // defaultValue={user.displayName}

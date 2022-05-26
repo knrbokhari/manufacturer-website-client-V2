@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutForm = ({ data: order, stripePromise }) => {
     const stripe = useStripe();
@@ -9,6 +10,7 @@ const CheckoutForm = ({ data: order, stripePromise }) => {
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState("");
     const [clientSecret, setClientSecret] = useState("");
+    const navigate = useNavigate()
 
     const { _id, totalPrices, name, email } = order;
     //   console.log(order);
@@ -72,7 +74,7 @@ const CheckoutForm = ({ data: order, stripePromise }) => {
         } else {
             setCardError("");
             setTransactionId(paymentIntent.id);
-            console.log(paymentIntent);
+            // console.log(paymentIntent);
             setSuccess("Congrats! Your payment is completed.");
 
             //store payment on database
@@ -92,6 +94,7 @@ const CheckoutForm = ({ data: order, stripePromise }) => {
                 .then((data) => {
                     setProcessing(false);
                     console.log(data);
+                    navigate('/dashboard')
                 });
         }
     };

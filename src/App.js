@@ -21,7 +21,10 @@ import Profile from './pages/Dashboard/Profile/Profile';
 import UpdateProfile from "./pages/Dashboard/UpdateProfile/UpdateProfile";
 import RequireAdmin from "./hooks/RequireAdmin";
 import ManageProducts from "./pages/Dashboard/ManageProducts/ManageProducts";
-
+import AddProduct from "./pages/Dashboard/AddProduct/AddProduct";
+import MyPortfolio from "./pages/MyPortfolio/MyPortfolio/MyPortfolio";
+import Blogs from "./pages/Blogs/Blogs";
+import NotFound from './pages/NotFound/NotFound';
 
 
 function App() {
@@ -29,26 +32,29 @@ function App() {
   const [admin, adminLoading] = useAdmin(user)
   return (
     <div className="">
-      <Navbar>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/purchase/:id" element={<RequireAuth><Purchase /></RequireAuth>} />
-          <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} >
-            {admin && <Route index element={<RequireAdmin><AllOrder /></RequireAdmin>}></Route>}
-            {admin && <Route path="alluser" element={<AllUsers />}></Route>}
-            {!admin && <Route index element={<MyOrder />}></Route>}
-            {!admin && <Route path="myreview" element={<MyReview />}></Route>}
-            <Route path="profile" element={<Profile />}></Route>
-            <Route path="payment/:id" element={<Payment />}></Route>
-            <Route path="updateprofile" element={<UpdateProfile />}></Route>
-            <Route path="manageproduct" element={<ManageProducts />}></Route>
-          </Route>
-        </Routes>
-        {/* <Footer /> */}
-      </Navbar>
+      <Navbar></Navbar>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="blogs" element={<Blogs />}></Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="myportfolio" element={<MyPortfolio />}></Route>
+        <Route path="/purchase/:id" element={<RequireAuth><Purchase /></RequireAuth>} />
+        <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} >
+          {!admin && <Route index element={<MyOrder />}></Route>}
+          {!admin && <Route path="myreview" element={<MyReview />}></Route>}
+          {admin && <Route index element={<RequireAdmin><AllOrder /></RequireAdmin>}></Route>}
+          {admin && <Route path="alluser" element={<AllUsers />}></Route>}
+          <Route path="profile" element={<Profile />}></Route>
+          <Route path="payment/:id" element={<Payment />}></Route>
+          <Route path="updateprofile" element={<UpdateProfile />}></Route>
+          <Route path="manageproduct" element={<ManageProducts />}></Route>
+          <Route path="addaproduct" element={<AddProduct />}></Route>
+        </Route>
+        <Route path="*" element={<NotFound />}></Route>
+      </Routes>
+      <Footer />
     </div>
   );
 }

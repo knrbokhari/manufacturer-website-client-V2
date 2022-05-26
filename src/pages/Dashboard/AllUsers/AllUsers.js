@@ -44,8 +44,8 @@ const AllUsers = () => {
     return (
         <div className='container'>
             <h2 className='my-10 text-center text-3xl'>All Users</h2>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     {/* <!-- head --> */}
                     <thead>
                         <tr>
