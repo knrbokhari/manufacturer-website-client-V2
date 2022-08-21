@@ -33,7 +33,7 @@ const Dashboard = () => {
                         <NavLink to="/dashboard/profile" className='w-full'>Profile</NavLink>
                     </li>
                     {!admin && <li>
-                        <NavLink to="/dashboard/myreview" className='w-full'>My Reviews</NavLink>
+                        <NavLink to="/dashboard/myreview" className='w-full'>add Reviews</NavLink>
                     </li>}
                     {admin && (
                         <li>

@@ -24,7 +24,7 @@ const Education = () => {
                     <div className=" ml-5 max-w-2xl">
                         <h5 className='text-cyan-400 text-xl'>BSC IN CSC</h5>
                         <h6 className="">Dhaka.</h6>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas, magni mollitia, aspernatur consequatur accusamus vero eum facere.</p>
+                        {/* <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas, magni mollitia, aspernatur consequatur accusamus vero eum facere.</p> */}
                     </div>
                 </div>
 
@@ -39,7 +39,7 @@ const Education = () => {
                     <div className="ml-5 max-w-2xl">
                         <h5 className='text-cyan-400 text-xl'>Diploma in CSC</h5>
                         <h6 className="">jhenaidah polytechnic institute.</h6>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas, magni mollitia, aspernatur consequatur accusamus vero eum facere.</p>
+                        {/* <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas, magni mollitia, aspernatur consequatur accusamus vero eum facere.</p> */}
                     </div>
                 </div>
 
@@ -54,7 +54,7 @@ const Education = () => {
                     <div className=" ml-5 max-w-2xl">
                         <h5 className='text-cyan-400 text-xl'>SSC</h5>
                         <h6 className="">Kotchandpur Govt. Model Pilot Secondary School.</h6>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas, magni mollitia, aspernatur consequatur accusamus vero eum facere.</p>
+                        {/* <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas, magni mollitia, aspernatur consequatur accusamus vero eum facere.</p> */}
                     </div>
                 </div>
             </div>
