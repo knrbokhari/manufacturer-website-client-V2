@@ -1,17 +1,25 @@
 import { useEffect, useState } from "react";
 
 const useProducts = () => {
+  const [call, setCall] = useState(false);
   const [products, seProducts] = useState([]);
+
   useEffect(() => {
     const fetchProduct = async () => {
-      const rsc = await fetch("https://warm-brook-08565.herokuapp.com/product");
+      const rsc = await fetch("http://localhost:5000/product");
       const data = await rsc.json();
       seProducts(data);
     };
-
     fetchProduct();
-  }, [products]);
-  return [products];
+    setCall(false);
+  }, [call]);
+
+  return [
+    products,
+    (value) => {
+      setCall(value);
+    },
+  ];
 };
 
 export default useProducts;
