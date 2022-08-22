@@ -12,9 +12,9 @@ const useUpdateProfile = (user) => {
       const data = await rsc.json();
       setUpdateProfileHooks(data);
     };
-
     fetchProduct();
   }, [user]);
+
   return [updateProfileHooks];
 };
 

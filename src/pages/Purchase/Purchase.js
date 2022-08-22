@@ -41,23 +41,27 @@ const Purchase = () => {
     }
 
     const booking = {
-      id: data._id,
+      productId: data._id,
       productName: data?.name,
       order: order,
       totalPrices: data?.price * order,
-      name: user.displayName,
+      userName: user.displayName,
       email: user.email,
+      quantity: data?.quantity,
     };
 
+    console.log(booking);
     fetch("http://localhost:5000/booking", {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify(booking),
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data.success) {
           alert("Thank you for your order!");
           navigate("/dashboard");
