@@ -12,10 +12,10 @@ const CheckoutForm = ({ data: order, stripePromise }) => {
   const [clientSecret, setClientSecret] = useState("");
   const navigate = useNavigate();
 
-  const { _id, totalPrices, name, email } = order;
+  const { _id, totalPrices, productName, userName, email } = order;
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("http://localhost:5000/payment/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -59,7 +59,7 @@ const CheckoutForm = ({ data: order, stripePromise }) => {
         payment_method: {
           card: card,
           billing_details: {
-            name: name,
+            name: userName,
             email: email,
           },
         },
@@ -75,7 +75,11 @@ const CheckoutForm = ({ data: order, stripePromise }) => {
 
       //store payment on database
       const payment = {
-        order: _id,
+        bookingId: _id,
+        productName: productName,
+        price: totalPrices,
+        userName: userName,
+        email: email,
         transactionId: paymentIntent.id,
       };
       fetch(`http://localhost:5000/booking/${_id}`, {
@@ -88,6 +92,7 @@ const CheckoutForm = ({ data: order, stripePromise }) => {
       })
         .then((res) => res.json())
         .then((data) => {
+          alert("Payment successful");
           setProcessing(false);
           navigate("/dashboard");
         });
@@ -117,7 +122,7 @@ const CheckoutForm = ({ data: order, stripePromise }) => {
         <button
           className="btn btn-success btn-sm mt-4"
           type="submit"
-          disabled={!stripe || !clientSecret || success}
+          // disabled={!stripe || !clientSecret || success}
         >
           Pay
         </button>

@@ -28,7 +28,9 @@ const MyOrder = () => {
           }
           return res.json();
         })
-        .then((data) => setOrders(data));
+        .then((data) => {
+          setOrders(data);
+        });
     }
   }, [cancelOrder]);
 

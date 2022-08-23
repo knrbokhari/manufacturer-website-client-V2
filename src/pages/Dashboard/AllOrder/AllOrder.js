@@ -75,7 +75,7 @@ const AllOrder = () => {
                     ""
                   ) : (
                     <label
-                      for="my-modal-6"
+                      htmlFor="my-modal-6"
                       className="btn modal-button btn-sm"
                       onClick={() => setCancelOrder(order._id)}
                     >

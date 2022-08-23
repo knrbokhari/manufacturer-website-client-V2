@@ -27,11 +27,11 @@ const Payment = () => {
 
   return (
     <div>
-      <h2>Payment</h2>
+      <h2 className="text-center text-3xl mt-2">Payment</h2>
       <div className=" md:flex gap-3 px-5 items-center">
         <div className="card w-full lg:w-1/2 bg-base-100 shadow-xl my-12">
           <div className="card-body border">
-            <p className="font-bold">Hello, {data.name}</p>
+            <p className="font-bold">Hello, {data.userName}</p>
             <p>Email: {data.email}</p>
             <h2 className="">Your order: {data.productName}</h2>
             <p>Total order: {data.order}</p>

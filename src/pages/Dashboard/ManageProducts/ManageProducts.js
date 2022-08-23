@@ -47,7 +47,7 @@ const ManageProducts = () => {
                 <td>${product?.price}</td>
                 <td>
                   <label
-                    for="my-modal-6"
+                    htmlFor="my-modal-6"
                     className="btn modal-button btn-sm"
                     onClick={() => setCancelOrder(product._id)}
                   >
@@ -78,13 +78,13 @@ const ManageProducts = () => {
             <p className="py-4">Do you want to Delete this order?</p>
             <div className="modal-action">
               <label
-                for="my-modal-6"
+                htmlFor="my-modal-6"
                 onClick={() => handleDelete()}
                 className="btn"
               >
                 Delete
               </label>
-              <label for="my-modal-6" className="btn">
+              <label htmlFor="my-modal-6" className="btn">
                 Cancel
               </label>
             </div>
