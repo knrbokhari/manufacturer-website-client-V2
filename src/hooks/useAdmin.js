@@ -21,7 +21,7 @@ const useAdmin = (user) => {
           if (res.status === 401 || res.status === 403) {
             navigate("/login");
             signOut(auth);
-            localStorage.removeItem("accessToken");
+            window.localStorage.removeItem("accessToken");
           }
           return res.json();
         })

@@ -24,7 +24,7 @@ const MyOrder = () => {
           if (res.status === 401 || res.status === 403) {
             navigate("/");
             signOut(auth);
-            localStorage.removeItem("accessToken");
+            window.localStorage.removeItem("accessToken");
           }
           return res.json();
         })
@@ -50,6 +50,7 @@ const MyOrder = () => {
                 <th>Payment</th>
                 <th>Cancel</th>
                 <td>transactionId</td>
+                <td>review</td>
               </tr>
             </thead>
             <tbody>

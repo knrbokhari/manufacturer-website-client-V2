@@ -36,6 +36,16 @@ const OrderRow = ({ order, index, setCancelOrder }) => {
         )}
       </td>
       <td>{order.transactionId}</td>
+      <td>
+        {order.paid && (
+          <Link
+            className="btn btn-success text-stone-100 btn-sm"
+            to={`/dashboard/addreview/${order._id}`}
+          >
+            Give Review
+          </Link>
+        )}
+      </td>
     </tr>
   );
 };

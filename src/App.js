@@ -25,6 +25,7 @@ import AddProduct from "./pages/Dashboard/AddProduct/AddProduct";
 import MyPortfolio from "./pages/MyPortfolio/MyPortfolio/MyPortfolio";
 import Blogs from "./pages/Blogs/Blogs";
 import NotFound from "./pages/NotFound/NotFound";
+import AddReview from "./pages/Dashboard/AddReview/AddReview";
 
 function App() {
   const [user] = useAuthState(auth);
@@ -73,10 +74,11 @@ function App() {
           <Route path="updateprofile" element={<UpdateProfile />}></Route>
           <Route path="manageproduct" element={<ManageProducts />}></Route>
           <Route path="addaproduct" element={<AddProduct />}></Route>
+          <Route path="addreview/:id" element={<AddReview />}></Route>
         </Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

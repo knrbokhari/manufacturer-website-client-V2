@@ -18,10 +18,11 @@ const MyReview = () => {
 
     const myReview = {
       rating: rating,
-      name: userName,
+      userName: userName,
+      email: user.email,
       review: review,
       time: dateTime,
-      image: user.photoURL,
+      productId: 0,
     };
     fetch("http://localhost:5000/review", {
       method: "POST",
