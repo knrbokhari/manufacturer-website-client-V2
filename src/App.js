@@ -26,10 +26,12 @@ import MyPortfolio from "./pages/MyPortfolio/MyPortfolio/MyPortfolio";
 import Blogs from "./pages/Blogs/Blogs";
 import NotFound from "./pages/NotFound/NotFound";
 import AddReview from "./pages/Dashboard/AddReview/AddReview";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [user] = useAuthState(auth);
-  const [admin, adminLoading] = useAdmin(user);
+  const [admin] = useAdmin(user);
   return (
     <div className="">
       <Navbar></Navbar>
@@ -78,7 +80,8 @@ function App() {
         </Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
+      <ToastContainer />
     </div>
   );
 }

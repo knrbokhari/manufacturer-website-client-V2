@@ -6,6 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate, useParams } from "react-router-dom";
 import auth from "../../../firebase.init";
 import { signOut } from "firebase/auth";
+import { toast } from "react-toastify";
 
 const AddReview = () => {
   const { id } = useParams();
@@ -66,7 +67,7 @@ const AddReview = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        toast.success("Review added.");
         e.target.reset();
         navigate("/dashboard/myreview");
       });

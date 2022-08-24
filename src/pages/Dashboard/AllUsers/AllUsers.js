@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery } from "react-query";
+import { toast } from "react-toastify";
 import Loading from "../../Shared/Loading/Loading";
 
 const AllUsers = () => {
@@ -28,21 +29,21 @@ const AllUsers = () => {
     })
       .then((res) => {
         if (res.status === 403) {
-          alert("Failed to Make an admin");
+          toast.error("Failed to Make an admin");
         }
         return res.json();
       })
       .then((data) => {
         if (data.modifiedCount > 0) {
-          alert("Successfully made an admin.");
+          toast.success("Successfully made an admin.");
           refetch();
         }
       });
   };
 
   return (
-    <div className="container">
-      <h2 className="my-10 text-center text-3xl">All Users</h2>
+    <div className="container mx-auto">
+      <h2 className="my-4 text-center text-3xl">All Users</h2>
       <div className="overflow-x-auto">
         <table className="table w-full">
           {/* <!-- head --> */}
@@ -62,7 +63,7 @@ const AllUsers = () => {
                 <th>{index + 1}</th>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>{user.role ? user.role : "Client"}</td>
+                <td>{user.role ? "Admin" : "Client"}</td>
                 <th>
                   {user.role ? (
                     ""

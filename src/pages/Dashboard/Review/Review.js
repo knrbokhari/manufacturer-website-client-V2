@@ -6,8 +6,6 @@ const Review = (props) => {
     props.review;
   const [user, setUser] = useState([]);
 
-  console.log(props.review);
-
   useEffect(() => {
     const fetchOrder = async () => {
       await fetch(`http://localhost:5000/user/${email}`, {

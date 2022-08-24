@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
+import { toast } from "react-toastify";
 import Loading from "../../Shared/Loading/Loading";
 import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal";
 
@@ -22,7 +23,7 @@ const AllOrder = () => {
   }
 
   const hendaleShipped = (id) => {
-    fetch(`http://localhost:5000/shipping/${id}`, {
+    fetch(`http://localhost:5000/booking/shipping/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -31,13 +32,14 @@ const AllOrder = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        toast.success(data);
         refetch();
       });
   };
 
   return (
     <div>
-      <h2 className="text-center text-3xl my-9">All Order</h2>
+      <h2 className="text-center text-3xl mt-3 mb-5">All Order</h2>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
@@ -52,7 +54,7 @@ const AllOrder = () => {
           </thead>
           <tbody>
             {orders?.map((order, index) => (
-              <tr>
+              <tr key={order._id}>
                 <th>{index + 1}</th>
                 <td>{order.productName}</td>
                 <td>{order.email}</td>

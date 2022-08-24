@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const AddProduct = () => {
   const navigate = useNavigate();
@@ -46,11 +47,11 @@ const AddProduct = () => {
             .then((res) => res.json())
             .then((result) => {
               if (result.acknowledged) {
-                alert("added successfully");
+                toast.success("added successfully");
                 reset();
                 navigate("/dashboard/manageproduct");
               } else {
-                alert("Failed to add profile");
+                toast.error("Failed to add profile");
               }
             });
         }

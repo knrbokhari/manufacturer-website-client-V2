@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import Loading from "../Shared/Loading/Loading";
 
@@ -30,12 +31,12 @@ const Purchase = () => {
   const handleOrder = (e) => {
     e.preventDefault();
     if (order < data?.minOrder) {
-      return alert(
+      return toast.error(
         "the order quantity can not be Lower than the minimum quantity"
       );
     }
     if (order > data?.quantity) {
-      return alert(
+      return toast.error(
         "the order quantity can not be higher than the available quantity"
       );
     }
@@ -63,10 +64,10 @@ const Purchase = () => {
       .then((data) => {
         console.log(data);
         if (data.success) {
-          alert("Thank you for your order!");
+          toast.success("Thank you for your order!");
           navigate("/dashboard");
         } else {
-          alert("sorry something went wrong");
+          toast.error("Sorry. Something went wrong!");
         }
       })
       .catch((error) => {

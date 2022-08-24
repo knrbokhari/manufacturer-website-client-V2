@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import useProducts from "../../../hooks/useProducts";
 
 const ManageProducts = () => {
@@ -16,7 +17,7 @@ const ManageProducts = () => {
       .then((data) => {
         reCall(true);
         if (data.deletedCount) {
-          alert(`your product is deleted.`);
+          toast.success(`Product deleted.`);
           setCancelOrder(null);
         }
       });

@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import Loading from "../../Shared/Loading/Loading";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useToken from "../../../hooks/useToken";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -23,7 +24,7 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
   const [token] = useToken(user || gUser);
 
-  let signInError;
+  // let signInError;
 
   useEffect(() => {
     if (token) {
@@ -32,15 +33,16 @@ const Login = () => {
   }, [token, from, navigate]);
 
   if (loading || gLoading) {
-    return <Loading></Loading>;
+    return <Loading />;
   }
 
   if (error || gError) {
-    signInError = (
-      <p className="text-red-500 text-center">
-        {error?.message || gError?.message}
-      </p>
-    );
+    // signInError = (
+    //   <p className="text-red-500 text-center">
+    //     {error?.message || gError?.message}
+    //   </p>
+    // );
+    toast.error(error?.message || gError?.message);
   }
 
   const onSubmit = (data) => {
@@ -125,7 +127,7 @@ const Login = () => {
                   </label>
                 </div>
 
-                {signInError}
+                {/* {signInError} */}
                 <input
                   className="btn w-full text-white"
                   type="submit"

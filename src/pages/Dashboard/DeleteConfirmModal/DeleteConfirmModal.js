@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 const DeleteConfirmModal = ({ cancelOrder, setCancelOrder }) => {
   const handleDelete = () => {
@@ -12,7 +13,7 @@ const DeleteConfirmModal = ({ cancelOrder, setCancelOrder }) => {
       .then((data) => {
         if (data) {
           setCancelOrder(null);
-          alert(`Cancel Successful!`);
+          toast.success(`Cancel Successful!`);
         }
       });
   };

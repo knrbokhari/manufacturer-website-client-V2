@@ -9,7 +9,7 @@ const Dashboard = () => {
   const [admin] = useAdmin(user);
 
   return (
-    <div className="mt-14 drawer drawer-mobile">
+    <div className="mt-11 drawer drawer-mobile" style={{ height: "85vh" }}>
       <input id="dashboard-sidebar" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         <h2 className="text-3xl text-center mt-14 font-bold text-purple-500">

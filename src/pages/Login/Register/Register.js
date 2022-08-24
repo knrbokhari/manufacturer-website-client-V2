@@ -9,6 +9,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Loading from "../../Shared/Loading/Loading";
 import auth from "../../../firebase.init";
 import useToken from "../../../hooks/useToken";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -25,18 +26,19 @@ const Register = () => {
   const from = location.state?.from?.pathname || "/";
   const [token] = useToken(user || gUser);
 
-  let registerError;
+  // let registerError;
 
   if (loading || gLoading || updating) {
     return <Loading></Loading>;
   }
 
   if (error || gError || updateError) {
-    registerError = (
-      <p className="text-red-500 text-center">
-        {error?.message || gError?.message || updateError?.message}
-      </p>
-    );
+    // registerError = (
+    //   <p className="text-red-500 text-center">
+    //     {error?.message || gError?.message || updateError?.message}
+    //   </p>
+    // );
+    toast.error(error?.message || gError?.message || updateError?.message);
   }
 
   if (token) {
@@ -145,7 +147,7 @@ const Register = () => {
                   </label>
                 </div>
 
-                {registerError}
+                {/* {registerError} */}
                 <input
                   className="btn w-full text-white"
                   type="submit"

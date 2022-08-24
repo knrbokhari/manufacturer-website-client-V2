@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import useUpdateProfileHooks from "../../../hooks/useUpdateProfile";
 import { useUpdateProfile } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 
 const UpdateProfile = () => {
   const [user] = useAuthState(auth);
@@ -58,11 +59,11 @@ const UpdateProfile = () => {
             .then((res) => res.json())
             .then((result) => {
               if (result.acknowledged) {
-                alert("added successfully");
+                toast.success("added successfully");
                 reset();
                 navigate("/dashboard/profile");
               } else {
-                alert("Failed to add profile");
+                toast.error("Failed to add profile");
               }
             });
         }
