@@ -43,7 +43,7 @@ const Dashboard = () => {
           {!admin && (
             <li>
               <NavLink to="/dashboard/myreview" className="w-full">
-                add Reviews
+                My Reviews
               </NavLink>
             </li>
           )}

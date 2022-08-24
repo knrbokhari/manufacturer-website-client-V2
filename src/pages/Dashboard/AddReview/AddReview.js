@@ -38,7 +38,6 @@ const AddReview = () => {
     fetchOrder();
   }, []);
 
-  console.log(order);
   const handleSubmit = (e) => {
     e.preventDefault();
     const rating = e.target.rating.value || 5;
@@ -69,7 +68,7 @@ const AddReview = () => {
       .then((data) => {
         console.log(data);
         e.target.reset();
-        navigate();
+        navigate("/dashboard/myreview");
       });
   };
 
