@@ -1,6 +1,6 @@
 import React from "react";
 import useReview from "../../../hooks/useReview";
-import Review from "../../Dashboard/Review/Review";
+import HomeReview from "../HomeReview/HomeReview";
 
 const Reviews = () => {
   const [reviews] = useReview();
@@ -10,80 +10,8 @@ const Reviews = () => {
       <h2 className="text-center text-5xl">Reviews</h2>
       <div className="carousel carousel-center w-full p-4 space-x-4 rounded-box">
         {reviews?.map((review) => (
-          <Review key={review._id} review={review}></Review>
+          <HomeReview key={review._id} review={review}></HomeReview>
         ))}
-        {/* {reviews
-          .slice()
-          .reverse()
-          .map((review) => (
-            <div
-              key={review._id}
-              className="carousel-item border w-full  rounded-lg"
-            >
-              <div className="card p-7 w-full bg-base-100 shadow-xl">
-                <div className="flex relative">
-                  <div className="avatar">
-                    <div className="w-20 h-20 rounded-full">
-                      <img
-                        src={
-                          review?.image
-                            ? review?.image
-                            : "https://i.ibb.co/TYCW2Fz/istockphoto-666545204-612x612-1.jpg"
-                        }
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                  <div className="ml-5 ">
-                    <h3 className="text-xl font-bold">{review?.userName}</h3>
-                    <div className="w-full mt-1">
-                      <div className="grid w-full grid-cols-2">
-                        <div className="rating rating-md">
-                          <div className="">
-                            <p>{}</p>
-                          </div>
-                          <input
-                            type="radio"
-                            name="rating"
-                            className="mask mask-star-2 bg-orange-400"
-                            checked={1 === parseInt(review?.rating)}
-                          />
-                          <input
-                            type="radio"
-                            name="rating"
-                            className="mask mask-star-2 bg-orange-400"
-                            checked={2 === parseInt(review?.rating)}
-                          />
-                          <input
-                            type="radio"
-                            name="rating"
-                            className="mask mask-star-2 bg-orange-400"
-                            checked={3 === parseInt(review?.rating)}
-                          />
-                          <input
-                            type="radio"
-                            name="rating"
-                            className="mask mask-star-2 bg-orange-400"
-                            checked={4 === parseInt(review?.rating)}
-                          />
-                          <input
-                            type="radio"
-                            name="rating"
-                            className="mask mask-star-2 bg-orange-400"
-                            checked={5 === parseInt(review?.rating)}
-                          />
-                        </div>
-                        <p className="absolute right-0 top-0 text-gray-500">
-                          {review?.time}
-                        </p>
-                      </div>
-                    </div>
-                    <p className="mt-3">{review?.review}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))} */}
       </div>
     </div>
   );

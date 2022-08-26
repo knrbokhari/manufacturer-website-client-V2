@@ -1,0 +1,95 @@
+import React, { useEffect, useState } from "react";
+
+const HomeReview = (props) => {
+  const { rating, userName, email, review, time, productName, order } =
+    props?.review;
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    const fetchOrder = async () => {
+      await fetch(
+        `https://blooming-fortress-19640.herokuapp.com/user/${email}`,
+        {
+          method: "GET",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Berer ${localStorage.getItem(`accessToken`)}`,
+          },
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setUser(data);
+        });
+    };
+
+    fetchOrder();
+  }, []);
+
+  return (
+    <div className="carousel-item border w-full  rounded-lg">
+      <div className="card p-7 w-full bg-base-100 shadow-xl">
+        <div className="flex relative">
+          <div className="avatar">
+            <div className="w-20 h-20 rounded-full">
+              <img
+                src={
+                  user.photo
+                    ? user.photo
+                    : "https://i.ibb.co/TYCW2Fz/istockphoto-666545204-612x612-1.jpg"
+                }
+                alt=""
+              />
+            </div>
+          </div>
+          <div className="ml-5 flex-1">
+            <h3 className="text-xl font-bold">{userName}</h3>
+            <div className="w-full mt-1">
+              <div className="grid w-full grid-cols-2">
+                <p className="text-xl">{`${productName} (${order})`}</p>
+                <div className="absolute right-0 top-0">
+                  <p className=" text-gray-500">{time}</p>
+                  <div className="rating -right-8 top-2 rating-md">
+                    <input
+                      type="radio"
+                      name="rating"
+                      className="mask mask-star-2 bg-orange-400"
+                      checked={1 === parseInt(rating)}
+                    />
+                    <input
+                      type="radio"
+                      name="rating"
+                      className="mask mask-star-2 bg-orange-400"
+                      checked={2 === parseInt(rating)}
+                    />
+                    <input
+                      type="radio"
+                      name="rating"
+                      className="mask mask-star-2 bg-orange-400"
+                      checked={3 === parseInt(rating)}
+                    />
+                    <input
+                      type="radio"
+                      name="rating"
+                      className="mask mask-star-2 bg-orange-400"
+                      checked={4 === parseInt(rating)}
+                    />
+                    <input
+                      type="radio"
+                      name="rating"
+                      className="mask mask-star-2 bg-orange-400"
+                      checked={5 === parseInt(rating)}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p className="text-base">{review}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default HomeReview;
