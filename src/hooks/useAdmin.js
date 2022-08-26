@@ -10,13 +10,16 @@ const useAdmin = (user) => {
   useEffect(() => {
     const email = user?.email;
     if (email) {
-      fetch(`http://localhost:5000/user/admin/${email}`, {
-        method: "GET",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Berer ${localStorage.getItem(`accessToken`)}`,
-        },
-      })
+      fetch(
+        `https://blooming-fortress-19640.herokuapp.com/user/admin/${email}`,
+        {
+          method: "GET",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Berer ${localStorage.getItem(`accessToken`)}`,
+          },
+        }
+      )
         .then((res) => {
           if (res.status === 401 || res.status === 403) {
             navigate("/login");

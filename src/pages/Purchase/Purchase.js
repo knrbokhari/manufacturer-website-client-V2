@@ -11,7 +11,7 @@ const Purchase = () => {
   const { id } = useParams();
   const [order, setOrder] = useState(0);
   const navigate = useNavigate();
-  const url = `http://localhost:5000/product/${id}`;
+  const url = `https://blooming-fortress-19640.herokuapp.com/product/${id}`;
   const { data, isLoading } = useQuery("product", () =>
     fetch(url, {
       headers: {
@@ -52,7 +52,7 @@ const Purchase = () => {
     };
 
     console.log(booking);
-    fetch("http://localhost:5000/booking", {
+    fetch("https://blooming-fortress-19640.herokuapp.com/booking", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

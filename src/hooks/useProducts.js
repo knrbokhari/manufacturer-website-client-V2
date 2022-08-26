@@ -6,7 +6,9 @@ const useProducts = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const rsc = await fetch("http://localhost:5000/product");
+      const rsc = await fetch(
+        "https://blooming-fortress-19640.herokuapp.com/product"
+      );
       const data = await rsc.json();
       seProducts(data);
     };

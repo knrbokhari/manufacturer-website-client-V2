@@ -9,7 +9,7 @@ const AllUsers = () => {
     refetch,
     isLoading,
   } = useQuery("users", () =>
-    fetch(`http://localhost:5000/user`, {
+    fetch(`https://blooming-fortress-19640.herokuapp.com/user`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -21,7 +21,7 @@ const AllUsers = () => {
   }
 
   const handleAdmin = (email) => {
-    fetch(`http://localhost:5000/user/admin/${email}`, {
+    fetch(`https://blooming-fortress-19640.herokuapp.com/user/admin/${email}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

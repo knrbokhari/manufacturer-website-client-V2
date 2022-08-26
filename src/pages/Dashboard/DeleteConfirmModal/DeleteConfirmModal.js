@@ -3,12 +3,15 @@ import { toast } from "react-toastify";
 
 const DeleteConfirmModal = ({ cancelOrder, setCancelOrder }) => {
   const handleDelete = () => {
-    fetch(`http://localhost:5000/booking/${cancelOrder}`, {
-      method: "put",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://blooming-fortress-19640.herokuapp.com/booking/${cancelOrder}`,
+      {
+        method: "put",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data) {

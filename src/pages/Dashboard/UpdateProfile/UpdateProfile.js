@@ -48,14 +48,17 @@ const UpdateProfile = () => {
             LinkedIn: data.LinkedIn || LinkedIn,
           };
           // send to your database
-          fetch(`http://localhost:5000/userprofile/${user.email}`, {
-            method: "PUT",
-            headers: {
-              "content-type": "application/json",
-              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-            },
-            body: JSON.stringify(profile),
-          })
+          fetch(
+            `https://blooming-fortress-19640.herokuapp.com/userprofile/${user.email}`,
+            {
+              method: "PUT",
+              headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+              },
+              body: JSON.stringify(profile),
+            }
+          )
             .then((res) => res.json())
             .then((result) => {
               if (result.acknowledged) {

@@ -16,13 +16,16 @@ const AddReview = () => {
 
   useEffect(() => {
     const fetchOrder = async () => {
-      await fetch(`http://localhost:5000/booking/${id}`, {
-        method: "GET",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Berer ${localStorage.getItem(`accessToken`)}`,
-        },
-      })
+      await fetch(
+        `https://blooming-fortress-19640.herokuapp.com/booking/${id}`,
+        {
+          method: "GET",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Berer ${localStorage.getItem(`accessToken`)}`,
+          },
+        }
+      )
         .then((res) => {
           if (res.status === 401 || res.status === 403) {
             navigate("/login");
@@ -57,7 +60,7 @@ const AddReview = () => {
       order: order.order,
     };
 
-    fetch("http://localhost:5000/review", {
+    fetch("https://blooming-fortress-19640.herokuapp.com/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",

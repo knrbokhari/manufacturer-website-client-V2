@@ -36,7 +36,7 @@ const AddProduct = () => {
             quantity: data.availableQuantity,
             description: data.description,
           };
-          fetch(`http://localhost:5000/product/`, {
+          fetch(`https://blooming-fortress-19640.herokuapp.com/product/`, {
             method: "post",
             headers: {
               "content-type": "application/json",

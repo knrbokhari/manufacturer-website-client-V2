@@ -4,7 +4,10 @@ const useReview = () => {
   const [reviews, seReviews] = useState([]);
   useEffect(() => {
     const fetchProduct = async () => {
-      const rsc = await fetch("http://localhost:5000/review", {});
+      const rsc = await fetch(
+        "https://blooming-fortress-19640.herokuapp.com/review",
+        {}
+      );
       const data = await rsc.json();
       seReviews(data);
     };

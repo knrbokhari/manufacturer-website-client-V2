@@ -9,12 +9,15 @@ const MyReview = () => {
 
   useEffect(() => {
     const fetchReviews = async () => {
-      const rsc = await fetch(`http://localhost:5000/review/${user.email}`, {
-        headers: {
-          "content-type": "application/json",
-          authorization: `Berer ${localStorage.getItem(`accessToken`)}`,
-        },
-      });
+      const rsc = await fetch(
+        `https://blooming-fortress-19640.herokuapp.com/review/${user.email}`,
+        {
+          headers: {
+            "content-type": "application/json",
+            authorization: `Berer ${localStorage.getItem(`accessToken`)}`,
+          },
+        }
+      );
       const data = await rsc.json();
       seReviews(data);
     };

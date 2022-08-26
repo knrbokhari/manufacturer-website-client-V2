@@ -11,7 +11,7 @@ const AllOrder = () => {
     isLoading,
     refetch,
   } = useQuery("orders", () =>
-    fetch("http://localhost:5000/booking", {
+    fetch("https://blooming-fortress-19640.herokuapp.com/booking", {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
@@ -23,13 +23,16 @@ const AllOrder = () => {
   }
 
   const hendaleShipped = (id) => {
-    fetch(`http://localhost:5000/booking/shipping/${id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://blooming-fortress-19640.herokuapp.com/booking/shipping/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         toast.success(data);

@@ -16,14 +16,17 @@ const CheckoutForm = ({ data: order, stripePromise }) => {
   const { _id, totalPrices, productName, userName, email } = order;
 
   useEffect(() => {
-    fetch("http://localhost:5000/payment/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify({ price: totalPrices }),
-    })
+    fetch(
+      "https://blooming-fortress-19640.herokuapp.com/payment/create-payment-intent",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify({ price: totalPrices }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data?.clientSecret) {
@@ -83,7 +86,7 @@ const CheckoutForm = ({ data: order, stripePromise }) => {
         email: email,
         transactionId: paymentIntent.id,
       };
-      fetch(`http://localhost:5000/booking/${_id}`, {
+      fetch(`https://blooming-fortress-19640.herokuapp.com/booking/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",

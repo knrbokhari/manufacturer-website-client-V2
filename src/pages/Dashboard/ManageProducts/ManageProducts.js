@@ -7,12 +7,15 @@ const ManageProducts = () => {
   const [products, reCall] = useProducts();
 
   const handleDelete = () => {
-    fetch(`http://localhost:5000/product/${cancelOrder}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://blooming-fortress-19640.herokuapp.com/product/${cancelOrder}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         reCall(true);

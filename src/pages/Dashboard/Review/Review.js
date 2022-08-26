@@ -3,18 +3,21 @@ import { useState } from "react";
 
 const Review = (props) => {
   const { rating, userName, email, review, time, productName, order } =
-    props.review;
+    props?.review;
   const [user, setUser] = useState([]);
 
   useEffect(() => {
     const fetchOrder = async () => {
-      await fetch(`http://localhost:5000/user/${email}`, {
-        method: "GET",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Berer ${localStorage.getItem(`accessToken`)}`,
-        },
-      })
+      await fetch(
+        `https://blooming-fortress-19640.herokuapp.com/user/${email}`,
+        {
+          method: "GET",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Berer ${localStorage.getItem(`accessToken`)}`,
+          },
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           setUser(data);
